@@ -1,3 +1,5 @@
 steps:
   mtaBuild:
         mtaJarLocation: /opt/sap/mta.jar
+  neoDeploy:
+        neoHome: /opt/sap/neo
