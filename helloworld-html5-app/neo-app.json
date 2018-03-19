@@ -1,0 +1,13 @@
+{
+	"welcomeFile": "webapp/index.html",
+	"cacheControl": 
+	[
+		{
+			"maxAge": 86400
+		}
+	],
+
+	"routes": 
+	[
+	]
+}

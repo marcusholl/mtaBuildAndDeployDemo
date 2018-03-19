@@ -1,0 +1,21 @@
+_schema-version: '2.1'
+
+ID: com.sap.mta.html5.helloworld
+version: 0.1.0
+
+parameters:
+   hcp-deployer-version: '1.1.0'
+   title: Hello World MTA Application
+   description: The application demonstrates deployment of HTML5 App with MTA on SAP CP NEO.
+
+modules:
+
+#  HTML5 applicaiton module   
+ - name: hello-world-html5-app
+   type: com.sap.hcp.html5
+   path: helloworld-html5-app
+   parameters:
+      name: helloworld
+      version: 0.1.0-${timestamp}
+      display-name: Hello World
+
