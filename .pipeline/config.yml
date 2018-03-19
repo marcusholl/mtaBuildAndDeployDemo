@@ -1,6 +1,6 @@
 steps:
   mtaBuild:
-        mtaJarLocation: /opt/sap/mta.jar
+        mtaJarLocation: /opt/sap/mta
   neoDeploy:
         neoHome: /opt/sap/neo
         host: hanatrial.ondemand.com
