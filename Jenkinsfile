@@ -129,6 +129,16 @@ node() {
       }
     }
   }
-}
 
+  stage("Smoke Test") {
+    sh '''#!/bin/bash
+          APPLICATION_URL=helloworld-d025390trial.dispatcher.hanatrial.ondemand.com
+          curl \
+            --fail \
+            --noproxy $APPLICATION_URL \
+            --verbose \
+            -k \
+            $APPLICATION_URL'''
+  }
+}
 
