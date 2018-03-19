@@ -4,3 +4,4 @@ steps:
   neoDeploy:
         neoHome: /opt/sap/neo
         host: hanatrial.ondemand.com
+        account: p1942792592trial
