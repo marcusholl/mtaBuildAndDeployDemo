@@ -22,10 +22,6 @@ node() {
   APP_PATH = 'src'
   SRC = "${WORKSPACE}/${APP_PATH}"
 
-
-  def STEP_CONFIG_NEO_DEPLOY='neoDeploy'
-  def STEP_CONFIG_MTA_BUILD='mtaBuild'
-
   stage("Clone sources and setup environment"){
     deleteDir()
     dir(APP_PATH) {
