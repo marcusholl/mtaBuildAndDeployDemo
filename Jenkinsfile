@@ -21,7 +21,7 @@ def CONFIG_FILE = '.pipeline/config.yml'
 // CM_CLIENT RELATED PROPERTIES START
 
   // Build server specific, should not be part of the project config
-  def CM_CLIENT_EXECUTABLE='$JENKINS_HOME/userContent/cmclient/bin/cmclient'
+  def CM_CLIENT_EXECUTABLE='$JENKINS_HOME/userContent/cmclient/v0.0.2-SNAPSHOT/bin/cmclient'
 
   // Company specific, should be part of a configuration specific config layer
   // (which we do not have yet).
@@ -59,7 +59,7 @@ node() {
                        passwordVariable: 'CM_PASSWORD',
                        usernameVariable: 'CM_USER')]) {
 
-      sh "${CM_CLIENT_EXECUTABLE} -e ${CM_ENDPOINT} -u ${CM_USER} -p '${CM_PASSWORD}' is-change-in-development ${CM_CHANGE_ID}"
+      sh "${CM_CLIENT_EXECUTABLE} -t SOLMAN -e ${CM_ENDPOINT} -u ${CM_USER} -p '${CM_PASSWORD}' is-change-in-development --return-code -cID ${CM_CHANGE_ID}"
     }
   }
 
