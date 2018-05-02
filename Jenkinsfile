@@ -59,7 +59,13 @@ node() {
                        passwordVariable: 'CM_PASSWORD',
                        usernameVariable: 'CM_USER')]) {
 
-      sh "${CM_CLIENT_EXECUTABLE} -t SOLMAN -e ${CM_ENDPOINT} -u ${CM_USER} -p '${CM_PASSWORD}' is-change-in-development --return-code -cID ${CM_CHANGE_ID}"
+      sh """${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                    -e ${CM_ENDPOINT} \
+                                    -u ${CM_USER} \
+                                    -p '${CM_PASSWORD}' \
+                                is-change-in-development \
+                                    --return-code \
+                                    -cID ${CM_CHANGE_ID}"""
     }
   }
 
