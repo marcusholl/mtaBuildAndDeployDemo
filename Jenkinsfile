@@ -17,6 +17,25 @@ import com.sap.piper.ConfigurationMerger
 
 def CONFIG_FILE = '.pipeline/config.yml'
 
+//
+// CM_CLIENT RELATED PROPERTIES START
+
+  // Build server specific, should not be part of the project config
+  def CM_CLIENT_EXECUTABLE='$JENKINS_HOME/userContent/cmclient/bin/cmclient'
+
+  // Company specific, should be part of a configuration specific config layer
+  // (which we do not have yet).
+  def CM_ENDPOINT='https://fbt.wdf.sap.corp:44300/sap/opu/odata/SAP/AI_CRM_GW_CM_CI_SRV/'
+
+  // The following properties are project specific
+  def CM_CREDENTIALS_KEY='CM'
+
+  // Should be provided e.g. via git commit message.
+  def CM_CHANGE_ID='8000050359'
+
+// CM_CLIENT RELATED PROPERTIES END
+//
+
 node() {
   //Global variables:
   APP_PATH = 'src'
@@ -32,6 +51,16 @@ node() {
 
     proxy = commonPipelineEnvironment.getConfigProperty('proxy') ?: ''
     httpsProxy = commonPipelineEnvironment.getConfigProperty('httpsProxy') ?: ''
+  }
+
+  stage("Check Change Document") {
+    withCredentials([usernamePassword(
+                       credentialsId: CM_CREDENTIALS_KEY,
+                       passwordVariable: 'CM_PASSWORD',
+                       usernameVariable: 'CM_USER')]) {
+
+      sh "${CM_CLIENT_EXECUTABLE} -e ${CM_ENDPOINT} -u ${CM_USER} -p '${CM_PASSWORD}' is-change-in-development ${CM_CHANGE_ID}"
+    }
   }
 
   stage("Build Fiori App"){
