@@ -88,7 +88,41 @@ node() {
       }
     }
   }
-  
+
+  stage('Upload Into Transport') {
+
+    withCredentials([usernamePassword(
+                       credentialsId: CM_CREDENTIALS_KEY,
+                       passwordVariable: 'CM_PASSWORD',
+                       usernameVariable: 'CM_USER')]) {
+
+        sh script: """#!/bin/bash
+                      sh """tId=${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                                        -e ${CM_ENDPOINT} \
+                                                        -u ${CM_USER} \
+                                                        -p ${CM_PASSWORD} \
+                                                    create-transport \
+                                                        -cID ${CM_CHANGE_ID}
+
+                                ${CM_CLIENT_EXECUTABLE} -t SOMLAN \
+                                                        -e ${CM_ENDPOINT} \
+                                                        -u ${CM_USER} \
+                                                        -p ${CM_PASSWORD} \
+                                                    upload-file-to-transport \
+                                                         -cID ${CM_CHANGE_ID} \
+                                                         -tID \${tID} \
+                                                         HCP \
+                                                         com.sap.mta.html5.helloworld.mtar
+
+                                ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                                        -e ${CM_ENDPOINT} \
+                                                        -u ${CM_USER} \
+                                                        -p '${CM_PASSWORD}' \
+                                                    release-transport \
+                                                        -cID ${CM_CHANGE_ID} \
+                                                        -tID \${tID}"""
+      }
+  }
   stage("Deploy Fiori App"){
     dir(SRC){
       withEnv(["http_proxy=${proxy}", "https_proxy=${httpsProxy}"]) {
