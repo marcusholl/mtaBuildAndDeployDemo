@@ -104,7 +104,7 @@ node() {
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}`
 
-                      echo "Transport request ${tID} created."
+                      echo "Transport request \${tID} created."
 
                       ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                               -e ${CM_ENDPOINT} \
