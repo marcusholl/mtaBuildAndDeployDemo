@@ -15,7 +15,7 @@ import com.sap.piper.ConfigurationMerger
  *	license agreement you entered into with SAP.
 */
 
-@Library('piper-library-os') _
+@Library('piper-library-os@a8a9281093915734957a2589d08fa826f3102b61') _
 
 def CONFIG_FILE = '.pipeline/config.yml'
 
