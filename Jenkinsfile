@@ -104,7 +104,7 @@ node() {
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}`
 
-                      if [ $? != 0 ]
+                      if [ \$? != 0 ]
                           exit 1
                       fi
 
