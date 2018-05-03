@@ -154,16 +154,5 @@ node() {
     }
   }
 
-  stage("Smoke Test") {
-          def APPLICATION_HOST='helloworld-d025390trial.dispatcher.hanatrial.ondemand.com'
-          def APPLICATION_URL="https://${APPLICATION_HOST}?hc_reset"
-    sh """#!/bin/bash
-          curl \
-            --fail \
-            --noproxy '${APPLICATION_HOST}' \
-            --verbose \
-            --insecure \
-            '${APPLICATION_URL}' """
-  }
 }
 
