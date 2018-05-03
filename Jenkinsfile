@@ -103,6 +103,14 @@ node() {
                                                   -p ${CM_PASSWORD} \
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}`
+                      if [ $? == 0 ]
+                      then
+                          echo "Transport request '\${tID}' created."
+                      else
+                          echo "Cannot create transport."
+                          exit 1
+                      fi
+
 """
       }
   }
