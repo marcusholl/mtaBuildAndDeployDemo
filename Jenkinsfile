@@ -102,7 +102,7 @@ node() {
                                                   -u ${CM_USER} \
                                                   -p ${CM_PASSWORD} \
                                               create-transport \
-                                                  -cID 8000050359`
+                                                  -cID ${CM_CHANGE_ID}`
 
                        if [ $? == 0 ]
                        then
