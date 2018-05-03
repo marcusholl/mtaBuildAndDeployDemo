@@ -103,8 +103,8 @@ node() {
                                                   -p ${CM_PASSWORD} \
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}
-        
-                          ${CM_CLIENT_EXECUTABLE} -t SOMLAN \
+
+                          ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                                   -e ${CM_ENDPOINT} \
                                                   -u ${CM_USER} \
                                                   -p ${CM_PASSWORD} \
@@ -113,7 +113,7 @@ node() {
                                                   -tID \${tID} \
                                                   HCP \
                                                   com.sap.mta.html5.helloworld.mtar
-        
+
                           ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                                   -e ${CM_ENDPOINT} \
                                                   -u ${CM_USER} \
