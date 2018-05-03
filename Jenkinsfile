@@ -104,23 +104,27 @@ node() {
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}`
 
-                          #${CM_CLIENT_EXECUTABLE} -t SOLMAN \
-                          #                        -e ${CM_ENDPOINT} \
-                          #                        -u ${CM_USER} \
-                          #                        -p ${CM_PASSWORD} \
-                          #                    upload-file-to-transport \
-                          #                        -cID ${CM_CHANGE_ID} \
-                          #                        -tID \${tID} \
-                          #                        HCP \
-                          #                        com.sap.mta.html5.helloworld.mtar
-#
-#                          ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
-#                                                  -e ${CM_ENDPOINT} \
-#                                                  -u ${CM_USER} \
-#                                                  -p '${CM_PASSWORD}' \
-#                                              release-transport \
-#                                                  -cID ${CM_CHANGE_ID} \
-#                                                  -tID \${tID}
+                      echo "Transport request ${tID} created."
+
+                      ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                              -e ${CM_ENDPOINT} \
+                                              -u ${CM_USER} \
+                                              -p ${CM_PASSWORD} \
+                                           upload-file-to-transport \
+                                              -cID ${CM_CHANGE_ID} \
+                                              -tID \${tID} \
+                                              HCP \
+                                              com.sap.mta.html5.helloworld.mtar
+
+                       echo "Executable uploaded into transport"
+
+                       ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                               -e ${CM_ENDPOINT} \
+                                               -u ${CM_USER} \
+                                               -p '${CM_PASSWORD}' \
+                                            release-transport \
+                                               -cID ${CM_CHANGE_ID} \
+                                               -tID \${tID}
                    """
       }
   }
