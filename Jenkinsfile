@@ -1,5 +1,7 @@
 #!groovy
 
+import hudson.AbortException
+
 import com.sap.piper.Utils
 import com.sap.piper.ConfigurationLoader
 import com.sap.piper.ConfigurationMerger
@@ -54,19 +56,29 @@ node() {
   }
 
   stage("Check Change Document") {
+    def rc = -1
     withCredentials([usernamePassword(
                        credentialsId: CM_CREDENTIALS_KEY,
                        passwordVariable: 'CM_PASSWORD',
                        usernameVariable: 'CM_USER')]) {
 
-      sh """${CM_CLIENT_EXECUTABLE} -t SOLMAN \
-                                    -e ${CM_ENDPOINT} \
-                                    -u ${CM_USER} \
-                                    -p '${CM_PASSWORD}' \
-                                is-change-in-development \
-                                    --return-code \
-                                    -cID ${CM_CHANGE_ID}"""
+          rc = sh returnStatus: true,
+                  script: """${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                                     -e ${CM_ENDPOINT} \
+                                                     -u ${CM_USER} \
+                                                     -p '${CM_PASSWORD}' \
+                                                 is-change-in-development \
+                                                     --return-code \
+                                                     -cID ${CM_CHANGE_ID}"""
     }
+
+    if(rc == 3) { // change is not in status "in development"
+      throw new AbortException("Change '${CM_CHANGE_ID}' is not in status 'in development'.")
+    } else if (rc != 0) { // values != 0 indicates a failure
+      throw new AbortException("Error while retrieving status for change '${CM_CHANGE_ID}'.")
+    }
+
+    echo "Change '${CM_CHANGE_ID}' is in required status 'in development'."
   }
 
   stage("Build Fiori App"){
