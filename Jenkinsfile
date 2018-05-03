@@ -123,9 +123,9 @@ node() {
 
                        if [ \$? == 0 ]
                        then
-                           echo "Executable uploaded into transport request"
+                           echo "Executable uploaded into transport request."
                        else
-                           echo "Cannot uplaod executable into transport request"
+                           echo "Cannot upload executable into transport request."
                            exit 1
                        fi
 
@@ -140,6 +140,8 @@ node() {
                        then
                            echo "Transport request '\${tID}' released."
                        else
+                           echo "Cannot release transport request '\${tID}'."
+                           exit 1
                        fi
                    """
       }
