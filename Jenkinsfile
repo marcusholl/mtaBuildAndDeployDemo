@@ -97,12 +97,12 @@ node() {
                        usernameVariable: 'CM_USER')]) {
 
         sh script: """#!/bin/bash
-                      tId=${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                      tId=`${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                                   -e ${CM_ENDPOINT} \
                                                   -u ${CM_USER} \
                                                   -p ${CM_PASSWORD} \
                                               create-transport \
-                                                  -cID ${CM_CHANGE_ID}
+                                                  -cID ${CM_CHANGE_ID}`
 
                           #${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                           #                        -e ${CM_ENDPOINT} \
