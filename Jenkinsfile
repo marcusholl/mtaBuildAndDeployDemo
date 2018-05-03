@@ -33,7 +33,7 @@ def CONFIG_FILE = '.pipeline/config.yml'
   def CM_CREDENTIALS_KEY='CM'
 
   // Should be provided e.g. via git commit message.
-  def CM_CHANGE_ID='8000050359'
+  def CM_CHANGE_ID='800005035'
 
 // CM_CLIENT RELATED PROPERTIES END
 //
