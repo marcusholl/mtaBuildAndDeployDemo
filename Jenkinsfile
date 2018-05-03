@@ -119,7 +119,7 @@ node() {
                                                -cID ${CM_CHANGE_ID} \
                                                -tID \${tID} \
                                                HCP \
-                                               com.sap.mta.html5.helloworld.mtar
+                                               ${MTAR_FILE_PATH}
 
                        if [ \$? == 0 ]
                        then
