@@ -97,26 +97,38 @@ node() {
                        usernameVariable: 'CM_USER')]) {
 
         sh script: """#!/bin/bash
-                      tId=`${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                      tID=`${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                                   -e ${CM_ENDPOINT} \
                                                   -u ${CM_USER} \
                                                   -p ${CM_PASSWORD} \
                                               create-transport \
                                                   -cID ${CM_CHANGE_ID}`
 
-                      echo "Transport request \${tID} created."
+                       if [ $? == 0 ]
+                       then
+                           echo "Transport request '\${tID}' created."
+                       else
+                           echo "Cannot create transport."
+                           exit 1
+                       fi
 
-                      ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
-                                              -e ${CM_ENDPOINT} \
-                                              -u ${CM_USER} \
-                                              -p ${CM_PASSWORD} \
-                                           upload-file-to-transport \
-                                              -cID ${CM_CHANGE_ID} \
-                                              -tID \${tID} \
-                                              HCP \
-                                              com.sap.mta.html5.helloworld.mtar
+                       ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
+                                               -e ${CM_ENDPOINT} \
+                                               -u ${CM_USER} \
+                                               -p ${CM_PASSWORD} \
+                                            upload-file-to-transport \
+                                               -cID ${CM_CHANGE_ID} \
+                                               -tID \${tID} \
+                                               HCP \
+                                               com.sap.mta.html5.helloworld.mtar
 
-                       echo "Executable uploaded into transport"
+                       if [ $? == 0 ]
+                       then
+                           echo "Executable uploaded into transport request"
+                       else
+                           echo "Cannot uplaod executable into transport request"
+                           exit 1
+                       fi
 
                        ${CM_CLIENT_EXECUTABLE} -t SOLMAN \
                                                -e ${CM_ENDPOINT} \
@@ -125,6 +137,11 @@ node() {
                                             release-transport \
                                                -cID ${CM_CHANGE_ID} \
                                                -tID \${tID}
+                       if [  $? == 0 ]
+                       then
+                           echo "Transport request '\${tID}' released."
+                       else
+                       fi
                    """
       }
   }
