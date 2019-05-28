@@ -1,6 +1,5 @@
 steps:
   neoDeploy:
-        neoHome: /opt/sap/neo
-        host: hanatrial.ondemand.com
-        account: d025390trial
-        neoCredentialsId: neoDeploy
+    neo:
+      host: hanatrial.ondemand.com
+      account: d025390trial
