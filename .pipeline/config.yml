@@ -1,5 +1,6 @@
 steps:
   neoDeploy:
+    dockerImage: 'ppiper/neo-cli'
     neo:
       host: hanatrial.ondemand.com
       account: d025390trial
