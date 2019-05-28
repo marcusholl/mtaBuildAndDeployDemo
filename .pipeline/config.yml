@@ -5,4 +5,4 @@ steps:
       host: hanatrial.ondemand.com
       account: d025390trial
   dockerExecute:
-    dockerPullImage:false
+    dockerPullImage: false
