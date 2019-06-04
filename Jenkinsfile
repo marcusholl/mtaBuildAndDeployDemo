@@ -9,14 +9,15 @@ import com.sap.piper.ConfigurationMerger
 node() {
   stage("Clone sources and setup environment x") {
     deleteDir()
-    def scmVars = checkout scm
-    echo "MH-SCM: ${scmVars}"
-    def myGit = git 'https://github.com/SAP/jenkins-pipelines'
-    echo "myGit: ${myGit.getClass().getName()}: ${myGit}}"
+    checkout scm
     setupCommonPipelineEnvironment script: this
     
-    dir('mh') {
-      checkout myGit
+    dir('jenkins-pipelines') {
+      git url: 'https://github.com/SAP/jenkins-pipelines'
+    }
+    
+    dir('xcode-maven-plugin') {
+      git url: https://github.com/marcusholl/xcode-maven-plugin.git
     }
 
   }
