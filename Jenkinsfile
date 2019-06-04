@@ -11,15 +11,14 @@ node() {
     deleteDir()
     checkout scm
     setupCommonPipelineEnvironment script: this
-    prepareDefaultValues script: this
 
   }
   stage("Build Fiori App"){
-        mtaBuild script: this, buildTarget: 'NEO'
+      echo 'Build'
   }
 
   stage("Deploy Fiori App"){
-        neoDeploy script: this
+      echo 'Deploy'
   }
 }
 
