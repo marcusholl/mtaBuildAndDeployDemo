@@ -9,7 +9,7 @@ import com.sap.piper.ConfigurationMerger
 node() {
   stage("Clone sources and setup environment") {
     deleteDir()
-    echo "SCM: ${scm}"
+    echo "MH-SCM: ${scm}"
     checkout scm
     setupCommonPipelineEnvironment script: this
 
