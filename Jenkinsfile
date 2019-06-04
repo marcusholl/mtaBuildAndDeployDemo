@@ -15,11 +15,11 @@ node() {
 
   }
   stage("Build Fiori App"){
-      echo 'Build'
+      echo 'Build xx'
   }
 
   stage("Deploy Fiori App"){
-      echo 'Deploy'
+      echo 'Deploy xx'
   }
 }
 
