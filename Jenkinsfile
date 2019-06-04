@@ -7,10 +7,10 @@ import com.sap.piper.ConfigurationMerger
 @Library('piper-library-os') _
 
 node() {
-  stage("Clone sources and setup environment") {
+  stage("Clone sources and setup environment x") {
     deleteDir()
-    echo "MH-SCM: ${scm}"
-    checkout scm
+    def scmVars = checkout scm
+    echo "MH-SCM: ${scmVars}"
     setupCommonPipelineEnvironment script: this
 
   }
