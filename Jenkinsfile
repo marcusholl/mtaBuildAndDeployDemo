@@ -17,7 +17,7 @@ node() {
     }
     
     dir('xcode-maven-plugin') {
-      git url: 'https://github.com/marcusholl/xcode-maven-plugin.git'
+      git url: 'https://github.com/marcusholl/xcode-maven-plugin.git', branch: 'l-test'
     }
 
   }
