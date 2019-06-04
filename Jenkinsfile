@@ -12,7 +12,7 @@ node() {
     def scmVars = checkout scm
     echo "MH-SCM: ${scmVars}"
     def myGit = git 'https://github.com/SAP/jenkins-pipelines'
-    echo "myGit: ${myGit.getClass().getName(): ${myGit}}"
+    echo "myGit: ${myGit.getClass().getName()}: ${myGit}}"
     setupCommonPipelineEnvironment script: this
 
   }
