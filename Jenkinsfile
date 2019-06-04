@@ -14,6 +14,10 @@ node() {
     def myGit = git 'https://github.com/SAP/jenkins-pipelines'
     echo "myGit: ${myGit.getClass().getName()}: ${myGit}}"
     setupCommonPipelineEnvironment script: this
+    
+    dir('mh') {
+      checkout myGit
+    }
 
   }
   stage("Build Fiori App"){
