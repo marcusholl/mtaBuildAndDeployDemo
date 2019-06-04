@@ -9,7 +9,7 @@ import com.sap.piper.ConfigurationMerger
 node() {
   stage("Clone sources and setup environment x") {
     deleteDir()
-    def scmVars = checkout scm directory: 'marcus'
+    def scmVars = checkout scm
     echo "MH-SCM: ${scmVars}"
     def myGit = git 'https://github.com/SAP/jenkins-pipelines'
     echo "myGit: ${myGit.getClass().getName(): ${myGit}}"
